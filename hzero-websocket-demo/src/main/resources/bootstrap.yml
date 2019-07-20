@@ -1,0 +1,38 @@
+# bootstrap.yml
+server:
+  port: 8880
+spring:
+  application:
+    name: hzero-todo-service-ws
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  cloud:
+    config:
+      failFast: true
+      retry:
+        maxAttempts: 6
+        multiplier: 1.5
+        maxInterval: 2000
+      uri: dev.hzero.org:8010
+      enabled: false
+  security:
+    user:
+      name: admin
+      password: admin
+management:
+  port: 8881
+  security:
+    enabled: false
+security:
+  basic:
+    enabled: false
+hzero:
+  websocket:
+    # websocket方式连接路径
+    websocket: /websocket
+    # sock-js连接路径
+    sockJs: /sock-js
+    # oauth地址
+    oauthUrl: http://dev.hzero.org:8080/oauth/api/user
+    # redis库
+    redisDb: 1
